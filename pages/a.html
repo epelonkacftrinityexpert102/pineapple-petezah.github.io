@@ -1,10 +1,16 @@
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+	<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WPH7NCG4');</script>
+<!-- End Google Tag Manager -->
+	
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
       	  		        <!-- Google tag (gtag.js) -->
@@ -21,8 +27,9 @@
 
     
 
-    <title>PeteZah | Games</title>
+    <title>PeteZah | Apps</title>
     <link rel="icon" type="icon/x-icon" href="/storage/images/logo-png-removebg-preview.png" />
+	<link rel="stylesheet" type="text/css" href="/storage/css/themes.css">
 
 
     <meta
@@ -53,6 +60,35 @@ body::-webkit-scrollbar {
     display: none;  /* Hide scrollbar */
 }
 
+	    	.god-rays {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 550px;
+    --stripes: repeating-linear-gradient( 100deg, rgba(20, 40, 60, 0.8) 0%, rgba(20, 40, 60, 0.8) 7%, transparent 10%, transparent 12%, rgba(20, 40, 60, 0.8) 16% );
+    --rays: repeating-linear-gradient( 100deg, rgba(30, 50, 90, 0.9) 10%, rgba(20, 40, 80, 0.9) 15%, rgba(30, 50, 90, 0.9) 20%, rgba(20, 40, 80, 0.9) 25%, rgba(30, 50, 90, 0.9) 30% );
+    background-image: var(--stripes), var(--rays);
+    background-size: 300%, 200%;
+    background-position: 50% 50%, 50% 50%;
+    animation: fadeIn 2s ease;
+    mask-image: radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, 0) 40%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 100% 0%, white 40%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.god-rays::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--stripes), var(--rays);
+    background-size: 200%, 100%;
+    animation: god-rays 40s linear infinite;
+    background-attachment: fixed;
+    mix-blend-mode: difference;
+}
+	    
 /* Fixed Search Bar */
 .search-container {
     position: fixed;  /* Keeps the search bar fixed at the top */
@@ -103,11 +139,67 @@ body::-webkit-scrollbar {
     width: 250px;  /* Slightly larger image items */
     height: 220px;
     overflow: hidden;
-    transition: transform 0.4s ease, box-shadow 0.3s ease;
     border-radius: 10px;  /* Slightly less rounded corners */
     background-color: #222;
     border: 2px solid #fff;  /* Skinny white border */
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);  /* Deeper shadow for a more modern look */
+    animation: fade-in 1s forwards;  /* Apply fade-in animation */
+    transition: transform 0.3s;
+}
+
+/* Fade-in animation for the images */
+@keyframes fade-in {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Apply staggered fade-in based on row */
+.game-container .row {
+    display: flex;
+    gap: 30px;
+    opacity: 0;
+    animation: row-fade-in 1s forwards;
+}
+
+/* Fade-in animation for each row */
+@keyframes row-fade-in {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Apply staggered animation delay to each row */
+.game-container .row:nth-child(1) {
+    animation-delay: 0s;
+}
+.game-container .row:nth-child(2) {
+    animation-delay: 0.3s;
+}
+.game-container .row:nth-child(3) {
+    animation-delay: 0.6s;
+}
+.game-container .row:nth-child(4) {
+    animation-delay: 0.9s;
+}
+
+/* Ensure all image items within the row fade in one after the other */
+.game-container .row .image-item {
+    opacity: 0;
+    animation: fade-in 1s forwards;
+}
+
+.game-container .row .image-item:nth-child(1) {
+    animation-delay: 0s;
+}
+.game-container .row .image-item:nth-child(2) {
+    animation-delay: 0.1s;
+}
+.game-container .row .image-item:nth-child(3) {
+    animation-delay: 0.2s;
+}
+.game-container .row .image-item:nth-child(4) {
+    animation-delay: 0.3s;
 }
 
 .image-item:hover {
@@ -416,9 +508,25 @@ body::-webkit-scrollbar {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }        
+
+	    .ad-container-horizantal {
+		width: 100%;
+		height: 200px;
+		border: 3px solid red;
+		background-color: #000e24;
+		z-index: -2;
+	}
     </style>
 </head>
 <body>
+
+	<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPH7NCG4"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+	
+	<div class="god-rays"></div>
+	
             <div class="search-container">
         <input type="text" id="search-games" placeholder="Search apps" onkeyup="filterItems()">
             </div>
@@ -432,19 +540,19 @@ body::-webkit-scrollbar {
         </div>
 
 	<div class="image-item" data-label="pete ai">
-            <a href="/iframe.html?url=/pages/other/ai.html">
+            <a href="/pages/other/ai.html" target="_blank">
                 <img src="/storage/images/logo-png-removebg-preview.png">
                 <div class="label">Pete AI</div>
             </a>
         </div>
-<!-- ***** PeteTV still in testing phase ***** 
+<!-- App items here 
 	<div class="image-item" data-label="pete tv movies">
-            <a href="/iframe.html?url=/pages/movies.html">
+            <a href="/iframe.html?url=/pages/other/movies.html">
                 <img src="/storage/images/main/petezahtv.jpeg">
-                <div class="label">Pete TV</div>
+                <div class="label">Movies</div>
             </a>
         </div>
--->
+-->		
         <div class="image-item" data-label="google">
             <a href="/iframe.html?url=/storage/ag/a/google/">
                 <img src="/storage/ag/a/google/IMG_5324.webp">
@@ -648,6 +756,13 @@ body::-webkit-scrollbar {
             </a>
         </div>
 
+	<div class="image-item" data-label="vortex chat">
+            <a href="/iframe.html?url=/storage/ag/a/vortex">
+                <img src="/storage/images/main/vortex.png">
+                <div class="label">Vortex</div>
+            </a>
+        </div>
+
         <div class="image-item" data-label="espn">
             <a href="/iframe.html?url=/storage/ag/a/fifa">
                 <img src="/storage/images/main/fifarosters.jpg">
@@ -704,6 +819,20 @@ body::-webkit-scrollbar {
             </a>
         </div>
 
+
+		<div class="ad-container-horizantal">
+      	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6640595376330309"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center; background-color: dark blue;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-6640595376330309"
+     data-ad-slot="2445086545"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+     </div>
       
      </div>
   
@@ -724,5 +853,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
     </script>
+	<script src="/storage/js/settings.js"></script>
 </body>
 </html>
