@@ -11,7 +11,7 @@
 
 self.__uv$config = {
     prefix: '/static/petezah/',
-    bare: 'https://petezahserver.guillaumevanstrydonck.be/bare/',
+    bare: 'https://petezahserver.faizinternational.com.np/bare/',
     encodeUrl: Ultraviolet.codec.xor.encode,
     decodeUrl: Ultraviolet.codec.xor.decode,
     handler: '/static/uv/uv.handler.js',
@@ -19,3 +19,5 @@ self.__uv$config = {
     config: '/static/uv/uv.config.js',
     sw: '/static/uv/uv.sw.js',
 };
+
+// DO NOT USE MY BARE
